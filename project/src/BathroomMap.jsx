@@ -25,3 +25,49 @@ const bathroomData = [
   { id: 4, name: "Mont Roayl Park Bathroom", position: [45.49844, 73.59915] },
   { id: 5, name: "King George Park Bathroom", position: [45.48551, 73.60537] },
 ];
+
+export default function BathroomMap() {
+  const [selectedBathroom, setSelectedBathroom] = useState(null);
+
+  return (
+    <div className="flex flex-col items-center p-4">
+      <h1 className="text-xl font-bold mb-4">
+        Interactive Bathroom Map - Montreal
+      </h1>
+      <div className="w-full h-96">
+        <MapContainer
+          center={[45.5017, -73.5673]}
+          zoom={13}
+          className="h-full w-full rounded-xl shadow-lg"
+        >
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+          />
+          {bathroomData.map((bathroom) => (
+            <Marker
+              key={bathroom.id}
+              position={bathroom.position}
+              icon={bathroomIcon}
+              eventHandlers={{
+                click: () => setSelectedBathroom(bathroom),
+              }}
+            />
+          ))}
+        </MapContainer>
+      </div>
+      {selectedBathroom && (
+        <Card className="mt-4 w-full max-w-md">
+          <CardContent>
+            <h2 className="text-lg font-semibold">{selectedBathroom.name}</h2>
+            <p className="text-sm">Latitude: {selectedBathroom.position[0]}</p>
+            <p className="text-sm">Longitude: {selectedBathroom.position[1]}</p>
+            <Button className="mt-2" onClick={() => setSelectedBathroom(null)}>
+              Close
+            </Button>
+          </CardContent>
+        </Card>
+      )}
+    </div>
+  );
+}
