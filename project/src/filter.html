@@ -209,13 +209,15 @@
          }
          .position_toilet_panel{
             position: absolute;
+            display:none;
             right: 5%;
             top: 5%;
          }
          .position_water_panel{
             position: absolute;
-            right: 50%;
-            top: 50%;
+            display:none;
+            right: 5%;
+            top: 5%;
          }
          .water_icon_panel{
             width:60px;
@@ -225,11 +227,33 @@
             font-size:20px;
             font-weight:bold;
          }
-         
+         .map_toilet_point{
+            width:30px;
+            height:30px;
+            background-color:red;
+            position:absolute;
+            left:75%;
+            top:50%;
+            cursor: pointer;
+         }
+         .map_water_point{
+            width:30px;
+            height:30px;
+            background-color:red;
+            position:absolute;
+            left:55%;
+            top:50%;
+            cursor: pointer;
+         }
+       
     </style>
 </head>
 
 <body>
+<img src="IMG/toilet_filter_img.png" onclick="displayToilet()" class="map_toilet_point">
+<img src="IMG/water_filter_img.png" onclick="displayWater()" class="map_water_point"></div>
+
+</div>
 <div class="row panel position_toilet_panel shared_padding">
     <div class="col panel_no_address">
         <div class="row toilet_logo_panel"> <!--logo toilet-->
@@ -248,9 +272,7 @@
             <div><text class ="property_filter">CLEAN: I</text></div> 
         </div>
 
-        <div>
-            <img src="IMG/x_img.png"/>
-        </div>
+        
     </div>
     <div class="shared_padding">
         <text class ="address_title_text">ADDRESS:</text> <text class = "address_text">677 Saint-Catherine St W</text>
@@ -266,10 +288,6 @@
             <img class="water_icon_panel" src="IMG/water_hot_img.png"/>
             <img class="water_icon_panel" src="IMG/water_cold_img.png"/>
             <img class="water_icon_panel" src="IMG/water_spark_img.png"/>
-        </div>
-
-        <div>
-            <img src="IMG/x_img.png"/>
         </div>
     </div>
     <div class="shared_padding">
@@ -357,6 +375,7 @@
 
     </div> 
 </div>
+<script src="filter.js" type="module" defer></script>
 </body>
 <script>
 
