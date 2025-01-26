@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="filter.js"></script>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter with map</title>
+    <link rel="stylesheet" href="filter.css"> 
+    <style>
+        html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden; /* Disable scrolling */
+        height: 100%; /* Ensure full-height viewport context */
+    }
+    .row{
+        flex-direction:column;
+        display:flex;
+    }
+    .col{
+        flex-direction:row;
+        display:flex;
+    }
+    .v_center{
+        justify-content: center;
+    }
+    .h_center{
+        align-items: center;
+    }
+    .shared_margin{
+        margin-right: 8px; 
+        margin-left: 8px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    .shared_padding{
+        padding-left:8px;
+        padding-top:8px;
+        padding-bottom:8px;
+        padding-right: 8px;
+    }
+    .centered_text{
+        color: black;
+        font-family: Arial;
+        font-size: 20px;
+        font-weight:bold;
+        text-align:center;
+        justify-content: center;
+    }
+    .title{
+        display:block;
+        color: black;
+        font-family: Arial;
+        font-size: 50px;
+        font-weight:bold;
+        text-align:left;
+    }
+
+    .title_filter{
+        display:block;
+        color: black;
+        font-family: Arial;
+        font-size: 30px;
+        font-weight:bold;
+        text-align:left;
+    }
+    
+        .shared_margin{
+            margin-right: 8px; 
+            margin-left: 8px;
+            margin-bottom: 8px;
+            margin-top: 8px;
+        }
+        .shared_padding{
+            padding-left:8px;
+            padding-top:8px;
+            padding-bottom:8px;
+            padding-right: 8px;
+        }
+        .centered_text{
+            color: black;
+            font-family: Arial;
+            font-size:35px;
+            text-align:center;
+            justify-content: center;
+        }
+        .title{
+            display:block;
+            color: black;
+            font-family: Arial;
+            font-size: 100px;
+            font-weight:bold;
+            text-align:left;
+        }
+        
+        .title_filter{
+            display:block;
+            color: black;
+            font-family: Arial;
+            font-size: 50px;
+            font-weight:bold;
+            text-align:left;
+        }
+        .property_filter{
+            color: black;
+            font-family: Arial;
+            font-size: 30px;
+            font-weight:bold;
+            text-align:left;
+        }
+        .page2_display{
+            background-color: blue;
+            width: 100vw;
+            height: 100vh;
+            display:block;
+        }
+        .map_display{
+            display:inline-block;
+            background-color:rgb(255, 201, 210);
+            /* height:400px; */
+            width:1200px;
+        }
+        /*--------------------------------------------------------FILTER--------------------------------------------------------*/
+        .filter{
+            display:inline-block;
+            background-color: rgb(240, 232, 175);
+            width: 500px;
+            height:100%;
+        }
+        .icon_filter{
+            flex:1;
+            height:100px;
+            object-fit:contain;
+            margin-left:5px;
+            margin-right:5px;
+        }
+        .icon_filter_layout{
+            text-align: center;
+            justify-content: center;
+        }
+         /*--------------------------------------------------------TOILET--------------------------------------------------------*/
+        .toilet_filter{
+            display:inline-block;
+            height: 250px;
+            margin-bottom: 50px;
+        }
+        .checkbox_filter{
+            color: black;
+            font-family: Arial;
+            font-size: 30px;
+            font-weight:bold;
+            text-align:left;
+        }
+       
+       
+       
+         /*--------------------------------------------------------FILTER--------------------------------------------------------*/
+        .water_filter{
+            display:flex;
+            height: 200px; 
+        }
+        .water{
+            display:inline-block;
+            padding-top:10px;
+            /* justify-content: center; */
+            height: 125px;
+            vertical-align: top;
+        }
+        
+        .water_icon{
+            max-width: 100%;
+            width:100px;
+            height:100px;
+            max-height: 200px;
+            object-fit:contain;
+            padding-bottom: 20px;
+        }
+         /*vertical-align:top */
+         /*--------------------------------------toilet panel------------------------------*/
+         
+         .panel{
+            display: inline-block;
+            width:400px;
+            height:250px;
+            background-color: rgb(216, 206, 206);
+         }
+         .panel_no_address{
+            display: flex;
+            height:215px;
+            overflow:hidden;
+         }
+         .toilet_logo_panel{
+            flex: 0 0 auto;
+            max-height: 100%;
+            flex-direction:column;
+            justify-content: center; /*vertical center*/
+            align-items: center;
+            width:150px;
+            display:flex;
+         }
+         .property_panel{
+            flex: 1;
+            justify-content: center;
+         }
+         .icon_panel{
+            /*width:150px;*/
+            height:150px;
+         }
+         .position_toilet_panel{
+            position: absolute;
+            display:none;
+            right: 5%;
+            top: 5%;
+         }
+         .position_water_panel{
+            position: absolute;
+            display:none;
+            right: 5%;
+            top: 5%;
+         }
+         .water_icon_panel{
+            width:60px;
+            height:60px;
+         }
+         .address_title_text{
+            font-size:20px;
+            font-weight:bold;
+         }
+         .map_toilet_point{
+            width:30px;
+            height:30px;
+            background-color:red;
+            position:absolute;
+            left:75%;
+            top:50%;
+            cursor: pointer;
+         }
+         .map_water_point{
+            width:30px;
+            height:30px;
+            background-color:red;
+            position:absolute;
+            left:55%;
+            top:50%;
+            cursor: pointer;
+         }
+       
+    </style>
+</head>
+
+<body>
+<img src="IMG/toilet_filter_img.png" onclick="displayToilet()" class="map_toilet_point">
+<img src="IMG/water_filter_img.png" onclick="displayWater()" class="map_water_point"></div>
+
+</div>
+<div class="row panel position_toilet_panel shared_padding">
+    <div class="col panel_no_address">
+        <div class="row toilet_logo_panel"> <!--logo toilet-->
+            <div><!--toilet-->
+                <img class="icon_panel" src = "IMG/toilet_map_img.png"/>
+            </div>
+            <div> <!--accessibility, gender neutral-->
+                <img src = "IMG/accessibility_img.png"/>
+                <img src = "IMG/neutralgender_img.png"/>
+                
+            </div>
+        </div>
+        <div class="property_panel row shared_padding">
+            <div><text class ="property_filter">COST: FREE</text></div>
+            <div><text class ="property_filter">CROWD: III</text></div>
+            <div><text class ="property_filter">CLEAN: I</text></div> 
+        </div>
+
+        
+    </div>
+    <div class="shared_padding">
+        <text class ="address_title_text">ADDRESS:</text> <text class = "address_text">677 Saint-Catherine St W</text>
+    </div>
+</div>
+
+<div class="row panel position_water_panel shared_padding">
+    <div class="col panel_no_address">
+        <div class="toilet_logo_panel"> 
+            <img class="icon_panel" src = "IMG/water_map_img.png"/>
+        </div>
+        <div class="col property_panel h_center shared_padding">
+            <img class="water_icon_panel" src="IMG/water_hot_img.png"/>
+            <img class="water_icon_panel" src="IMG/water_cold_img.png"/>
+            <img class="water_icon_panel" src="IMG/water_spark_img.png"/>
+        </div>
+    </div>
+    <div class="shared_padding">
+        <text class ="address_title_text property_filter">ADDRESS:</text> <text class = "address_text">677 Saint-Catherine St W</text>
+    </div>
+</div>
+
+<div class="page2_display">  
+    <div class = "row filter shared_padding">
+        <div>
+            <text class="title" shared_margin>Filters</text>
+        </div>
+        <div>
+            <div class = "icon_filter_layout shared_padding">
+                <div >
+                    <img class = "icon_filter" src="IMG/water_filter_img.png"/>
+                    <img class = "icon_filter" src="IMG/toilet_filter_img.png"/>
+                </div>
+            </div>
+        </div>
+        <div class="toilet_filter shared_padding">
+            <div>
+                <text class="title_filter shared_margin">TOILET</text>
+                
+            <div>
+                <div class ="shared_margin">
+                    <text class ="property_filter">COST: </text>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">Any</label>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">Free</label>
+                </div>
+                <div class ="shared_margin">
+                    <text class ="property_filter">CROWD: </text>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">I</label>
+                    <input  type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">II</label>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">III</label>
+                </div>
+                <div class ="shared_margin">
+                    <text class ="property_filter">CLEAN: </text>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">I</label>
+                    <input  type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">II</label>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">III</label>
+                </div>
+                <div class ="shared_margin">
+                    <text class ="property_filter">GENDER NEUTRAL: </text>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">YES</label>
+                </div>
+                <div class ="shared_margin">
+                    <text class ="property_filter">ACCESSIBILITY: </text>
+                    <input type="checkbox" id="accessibility" name="accessibility" value="yes"> <label for="accessibility" class = "checkbox_filter">YES</label>
+                </div>
+            </div>
+            </div>
+        </div>
+        <!--WATER-->
+        <div class="row water_filter shared_padding">
+            <div>
+                <text class="title_filter shared_margin">WATER</text>
+            </div>
+
+            <div class="v_center col water_col">
+                <div class="water shared_margin">
+                    <div class="row h_center shared_margin">
+                    <img class = "h_center water_icon" src="IMG/water_hot_img.png"/>
+                        <div class="centered_text">HOT</div>
+                    </div>
+                </div>
+                <div class="water shared_margin">
+                    <div class="row h_center shared_margin">
+                        <img class = "h_center water_icon" src="IMG/water_cold_img.png"/>
+                    <div class="centered_text">COLD</div>
+                    </div>
+                </div>
+                <div class="water shared_margin">
+                    <div class="row h_center shared_margin">
+                        <img class = "v_center water_icon" src="IMG/water_spark_img.png"/>
+                        <div class="centered_text">SPARKLING</div>
+                    </div>
+                </div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    <div class = "map_display">
+
+    </div> 
+</div>
+<script src="filter.js" type="module" defer></script>
+</body>
+<script>
+
+</script>
+</html>

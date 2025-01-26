@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 import L from "leaflet";
+
+
 
 const bathroomIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
@@ -19,7 +21,7 @@ const bathroomData = [
 export const BathroomMap = () => {
   const [selectedBathroom, setSelectedBathroom] = useState(null);
   const [filters, setFilters] = useState({
-    free: false, // "any" for cost
+    free: false, // Default: "any"
     crowdI: true, // Default checked
     crowdII: true, // Default checked
     crowdIII: true, // Default checked
@@ -129,28 +131,28 @@ export const BathroomMap = () => {
       </div>
 
       {/* Map Section */}
-      <div>
-        <MapContainer
-          center={[45.5017, -73.5673]}
-          zoom={13}
-          style={{ width: "100wh", height: "100vh" }}
-        >
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
-          />
-          {filteredBathrooms.map((bathroom) => (
-            <Marker
-              key={bathroom.id}
-              position={bathroom.position}
-              icon={bathroomIcon}
-              eventHandlers={{
-                click: () => setSelectedBathroom(bathroom),
-              }}
-            />
-          ))}
-        </MapContainer>
-      </div>
+      <MapContainer
+        center={[45.5017, -73.5673]}
+        zoom={13}
+        style={{ width: "100wh", height: "100vh" }}
+      >
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
+        />
+        {filteredBathrooms.map((bathroom) => (
+          <Marker
+            key={bathroom.id}
+            position={bathroom.position}
+            icon={bathroomIcon}
+            eventHandlers={{
+              click: () => setSelectedBathroom(bathroom),
+            }}
+          >
+            <Tooltip>{bathroom.name}</Tooltip>
+          </Marker>
+        ))}
+      </MapContainer>
 
       {/* Selected Bathroom Details */}
       {selectedBathroom && (
