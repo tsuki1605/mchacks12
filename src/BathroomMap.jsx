@@ -11,19 +11,96 @@ const bathroomIcon = new L.Icon({
 });
 
 const bathroomData = [
-  { id: 1, name: "Eaton Center Bathroom", position: [45.50362, -73.57105] },
+  {
+    id: 1,
+    name: "Eaton Center Bathroom",
+    position: [45.50362, -73.57105],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "II",
+    crowd: "III",
+  },
   {
     id: 2,
     name: "Concordia University Bathroom",
     position: [45.49652, -73.57932],
+    cost: "Free",
+    genderneutral: "Yes",
+    accessible: "Yes",
+    clean: "III",
+    crowd: "III",
   },
   {
     id: 3,
     name: "Parc Linéaire de la Commune Bathroom",
     position: [45.50282, -73.55308],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "I",
   },
-  { id: 4, name: "Mont Royal Park Bathroom", position: [45.49844, -73.59915] },
-  { id: 5, name: "King George Park Bathroom", position: [45.48551, -73.60537] },
+  {
+    id: 4,
+    name: "Mont Royal Park Bathroom",
+    position: [45.49844, -73.59915],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "II",
+    crowd: "III",
+  },
+  {
+    id: 5,
+    name: "King George Park Bathroom",
+    position: [45.48551, -73.60537],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "No",
+    clean: "I",
+    crowd: "I",
+  },
+  {
+    id: 6,
+    name: "Central Station Bathroom",
+    position: [45.50015, -73.56805],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "II",
+  },
+  {
+    id: 7,
+    name: "La Fontaine Park Bathroom",
+    position: [45.52523, -73.56966],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "I",
+  },
+  {
+    id: 8,
+    name: "Outremont Park Bathroom",
+    position: [45.51781, -73.60547],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "II",
+  },
+  {
+    id: 10,
+    name: "Montréal Trudeau International Airport Bathroom",
+    position: [45.45645, -73.74895],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "II",
+    crowd: "I",
+  },
 ];
 
 export const BathroomMap = () => {
@@ -33,7 +110,7 @@ export const BathroomMap = () => {
       <MapContainer
         center={position}
         zoom={13}
-        style={{ width: "500px", height: "500px" }}
+        style={{ width: "100vw", height: "100vh" }}
       >
         <TileLayer
           url={`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`}
@@ -45,14 +122,16 @@ export const BathroomMap = () => {
             position={bathroom.position}
             icon={bathroomIcon}
           >
-            <Tooltip> {`${bathroom.name}`}</Tooltip>
+            <Tooltip>
+              {`${bathroom.name}`} <br />
+              Cost: {bathroom.cost} <br />
+              Gender Neutral: {bathroom.genderneutral} <br />
+              Accessible: {bathroom.accessible} <br />
+              Clean: {bathroom.clean} <br />
+              Crowd: {bathroom.crowd}
+            </Tooltip>
           </Marker>
         ))}
-        <Marker position={[51.505, -0.09]}>
-          <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
-          </Popup>
-        </Marker>
       </MapContainer>
     </div>
   );
