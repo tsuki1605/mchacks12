@@ -1,6 +1,6 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
 // import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 // import "./styles.css";
@@ -44,7 +44,9 @@ export const BathroomMap = () => {
             key={bathroom.id}
             position={bathroom.position}
             icon={bathroomIcon}
-          />
+          >
+            <Tooltip> {`${bathroom.name}`}</Tooltip>
+          </Marker>
         ))}
         <Marker position={[51.505, -0.09]}>
           <Popup>
