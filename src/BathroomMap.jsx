@@ -1,6 +1,6 @@
 import React from "react";
 import "leaflet/dist/leaflet.css";
-import { MapContainer, TileLayer, Marker, Popup, Tooltip } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 // import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 // import "./styles.css";
@@ -103,13 +103,33 @@ const bathroomData = [
   },
   {
     id: 11,
-    name: "Sir Wilfrid Laurier",
-    position: [45.45645, -73.74895],
+    name: "Sir-Wilfrid-Laurier Park",
+    position: [45.53204, -73.58745],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "II",
+  },
+  {
+    id: 12,
+    name: "Montreal Port Bathroom",
+    position: [45.5097, -73.54833],
     cost: "Free",
     genderneutral: "No",
     accessible: "Yes",
     clean: "II",
     crowd: "I",
+  },
+  {
+    id: 13,
+    name: "Jean-Drapeau Park Bathroom",
+    position: [45.51142, -73.53313],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "I",
+    crowd: "III",
   },
 ];
 
