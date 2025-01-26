@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import React from "react";
 import "leaflet/dist/leaflet.css";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+// import "./styles.css";
 
 const bathroomIcon = new L.Icon({
   iconURL: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
@@ -18,7 +18,8 @@ const bathroomData = [
   { id: 5, name: "King George Park Bathroom", position: [45.48551, 73.60537] },
 ];
 
-export default function BathroomMap() {
+export const BathroomMap=() => {
+  const position = [45.49652, -73.57932];
   const [selectedBathroom, setSelectedBathroom] = useState(null);
   const [filters, setFilters] = useState({
     cost: 'any',
