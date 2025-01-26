@@ -101,6 +101,16 @@ const bathroomData = [
     clean: "II",
     crowd: "I",
   },
+  {
+    id: 11,
+    name: "Sir Wilfrid Laurier",
+    position: [45.45645, -73.74895],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "Yes",
+    clean: "II",
+    crowd: "I",
+  },
 ];
 
 export const BathroomMap = () => {
