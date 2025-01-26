@@ -131,6 +131,16 @@ const bathroomData = [
     clean: "I",
     crowd: "III",
   },
+  {
+    id: 14,
+    name: "Public Bathroom",
+    position: [45.42663, -73.59564],
+    cost: "Free",
+    genderneutral: "No",
+    accessible: "No",
+    clean: "I",
+    crowd: "I",
+  },
 ];
 
 export const BathroomMap = () => {
