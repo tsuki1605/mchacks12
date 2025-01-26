@@ -6,20 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restroom Service</title>
     <link rel="stylesheet" href="index.css">
+    <script src="index.js" type="module" defer></script>
 </head>
 
 <body>
     <header>
         <div class="header" id="header-title">
-            <h1>Restroom Service</h1>
+            <h1>Loocation</h1>
         </div>
     </header>
     <main>
         <div class="container" id="center">
             <div class="text" id="description-text">
                 <p>meowmeowmeow</p>
-                <input type="text" id="user-input" placeholder="Type your location here">
             </div>
+            <div>
+                <form id="main-form">
+                    <input type="text" id="user-input" placeholder="Type your location here">
+                </form>
+            </div>
+            <script>
+                document.getElementById('location-form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const userInput = document.getElementById('user-input').value;
+                    window.location.href = `newpage.html?location=${encodeURIComponent(userInput)}`;
+                });
+            </script>
             <div id="description-image">
                 <img alt="toilet" src="assets/images/toilet_screen.png" title="toilet-img">
             </div>
