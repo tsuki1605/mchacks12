@@ -2,8 +2,15 @@ import React, { useState } from "react";
 import "leaflet/dist/leaflet.css";
 import { MapContainer, TileLayer, Marker, Tooltip } from "react-leaflet";
 import L from "leaflet";
-
-
+import './flter.css';
+import toiletMapImg from './IMG/toilet_map_img.png';
+import accessibilityImg from './IMG/accessibility_img.png';
+import neutralGenderImg from './IMG/neutralgender_img.png';
+import water_filter_img from './IMG/water_filter_img.png';
+  import toilet_filter_img from './IMG/toilet_filter_img.png';
+  import water_hot_img from './IMG/water_hot_img.png'
+  import water_cold_img from './IMG/water_cold_img.png'
+  import water_spark_img from './IMG/water_spark_img.png'
 
 const bathroomIcon = new L.Icon({
   iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
@@ -18,6 +25,8 @@ const bathroomData = [
   { id: 5, name: "King George Park Bathroom", position: [45.48551, -73.60537], cost: "free", crowd: "I", clean: "I", genderNeutral: "yes", accessible: "no" },
 ];
 
+
+
 export const BathroomMap = () => {
   const [selectedBathroom, setSelectedBathroom] = useState(null);
   const [filters, setFilters] = useState({
@@ -31,6 +40,37 @@ export const BathroomMap = () => {
     genderNeutral: false, // Default "no"
     accessible: false, // Default "no"
   });
+
+  const bathroomIcon = new L.Icon({
+    iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+    iconSize: [32, 32],
+  });
+
+  const bathroomData = [
+    {
+      id: 1,
+      name: "Central Bathroom",
+      position: [45.5017, -73.5673],
+      cost: "free",
+      crowd: "III",
+      clean: "I",
+      genderNeutral: "yes",
+      accessible: "yes",
+      address: "677 Saint-Catherine St W",
+    },
+    {
+      id: 2,
+      name: "West Bathroom",
+      position: [45.508, -73.554],
+      cost: "paid",
+      crowd: "II",
+      clean: "III",
+      genderNeutral: "no",
+      accessible: "yes",
+      address: "123 West Avenue",
+    },
+    // Add more bathrooms as needed
+  ];
 
   const handleFilterChange = (filter) => {
     setFilters({ ...filters, [filter]: !filters[filter] });
@@ -51,90 +91,172 @@ export const BathroomMap = () => {
   });
 
   return (
-    <div className="flex flex-col items-center p-4">
-      <h1 className="text-xl font-bold mb-4">Loocation</h1>
+    <div className="page2_display">
+  <div className="row filter shared_padding">
+    <div>
+      <text className="title" shared_margin>
+        Filters
+      </text>
+    </div>
+    <div>
+      <div className="icon_filter_layout shared_padding">
+        <div>
+        
+          <img className="icon_filter" src={water_filter_img}/>
+          <img className="icon_filter" src={toilet_filter_img} />
+        </div>
+      </div>
+    </div>
+    <div className="toilet_filter shared_padding">
+      <div>
+        <text className="title_filter shared_margin">TOILET</text>
 
-      {/* Filter Section */}
-      <div className="flex flex-wrap gap-4 mb-4">
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
+        <div>
+          <div className="shared_margin">
+            <text className="property_filter">COST: </text>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              Any
+            </label>
+            <input
+              type="checkbox"
             checked={filters.free}
             onChange={() => handleFilterChange("free")}
-          />
-          <span>Free</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.crowdI}
-            onChange={() => handleFilterChange("crowdI")}
-          />
-          <span>Crowd I</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.crowdII}
-            onChange={() => handleFilterChange("crowdII")}
-          />
-          <span>Crowd II</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.crowdIII}
-            onChange={() => handleFilterChange("crowdIII")}
-          />
-          <span>Crowd III</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.cleanI}
-            onChange={() => handleFilterChange("cleanI")}
-          />
-          <span>Clean I</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.cleanII}
-            onChange={() => handleFilterChange("cleanII")}
-          />
-          <span>Clean II</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.cleanIII}
-            onChange={() => handleFilterChange("cleanIII")}
-          />
-          <span>Clean III</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.genderNeutral}
-            onChange={() => handleFilterChange("genderNeutral")}
-          />
-          <span>Gender Neutral (Yes)</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <input
-            type="checkbox"
-            checked={filters.accessible}
-            onChange={() => handleFilterChange("accessible")}
-          />
-          <span>Accessible (Yes)</span>
-        </label>
+            />
+            <label className="checkbox_filter">
+              Free
+            </label>
+          </div>
+          <div className="shared_margin">
+            <text className="property_filter">CROWD: </text>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              I
+            </label>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              II
+            </label>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              III
+            </label>
+          </div>
+          <div className="shared_margin">
+            <text className="property_filter">CLEAN: </text>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              I
+            </label>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              II
+            </label>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              III
+            </label>
+          </div>
+          <div className="shared_margin">
+            <text className="property_filter">GENDER NEUTRAL: </text>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              YES
+            </label>
+          </div>
+          <div className="shared_margin">
+            <text className="property_filter">ACCESSIBILITY: </text>
+            <input
+              type="checkbox"
+              id="accessibility"
+              name="accessibility"
+              value="yes"
+            />{" "}
+            <label htmlFor="accessibility" className="checkbox_filter">
+              YES
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    {/* WATER */}
+    <div className="row water_filter shared_padding">
+      <div>
+        <text className="title_filter shared_margin">WATER</text>
       </div>
 
+      <div className="v_center col water_col">
+        <div className="water shared_margin">
+          <div className="row h_center shared_margin">
+          
+            <img className="h_center water_icon" src={water_hot_img} />
+            <div className="centered_text">HOT</div>
+          </div>
+        </div>
+        <div className="water shared_margin">
+          <div className="row h_center shared_margin">
+          
+            <img className="h_center water_icon" src={water_cold_img} />
+            <div className="centered_text">COLD</div>
+          </div>
+        </div>
+        <div className="water shared_margin">
+          <div className="row h_center shared_margin">
+            <img className="v_center water_icon" src={water_spark_img} />
+            <div className="centered_text">SPARKLING</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="map_display"></div>
+
+  
       {/* Map Section */}
       <MapContainer
         center={[45.5017, -73.5673]}
         zoom={13}
-        style={{ width: "100wh", height: "100vh" }}
+        style={{ width: "100wh", height: "50vh" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -154,17 +276,48 @@ export const BathroomMap = () => {
         ))}
       </MapContainer>
 
-      {/* Selected Bathroom Details */}
+      {/* Selected Bathroom Details Panel */}
       {selectedBathroom && (
-        <div className="mt-4 w-full max-w-md p-4 border rounded shadow-md bg-white">
-          <h2 className="text-lg font-semibold">{selectedBathroom.name}</h2>
-          <p className="text-sm">Latitude: {selectedBathroom.position[0]}</p>
-          <p className="text-sm">Longitude: {selectedBathroom.position[1]}</p>
-          <p className="text-sm">Cost: {selectedBathroom.cost}</p>
-          <p className="text-sm">Crowd: {selectedBathroom.crowd}</p>
-          <p className="text-sm">Clean: {selectedBathroom.clean}</p>
-          <p className="text-sm">Gender Neutral: {selectedBathroom.genderNeutral}</p>
-          <p className="text-sm">Accessible: {selectedBathroom.accessible}</p>
+        <div className="row panel shared_padding mt-4 w-full max-w-md p-4 border rounded shadow-md bg-white">
+          <div className="col panel_no_address">
+            <div className="row toilet_logo_panel">
+              <div>
+                <img
+                  className="icon_panel"
+                  src={toiletMapImg}
+                  alt="Toilet Logo"
+                />
+              </div>
+              <div>
+                <img
+                  src={accessibilityImg}
+                  alt="Accessibility"
+                />
+                <img
+                  src={neutralGenderImg}
+                  alt="Gender Neutral"
+                />
+              </div>
+            </div>
+            <div className="property_panel row shared_padding">
+              <div>
+                <span className="property_filter">COST:</span>
+                <span className="address_text">{selectedBathroom.cost}</span>
+              </div>
+              <div>
+                <span className="property_filter">CROWD:</span>
+                <span className="address_text">{selectedBathroom.crowd}</span>
+              </div>
+              <div>
+                <span className="property_filter">CLEAN:</span>
+                <span className="address_text">{selectedBathroom.clean}</span>
+              </div>
+            </div>
+          </div>
+          <div className="shared_padding">
+            <span className="address_title_text">ADDRESS:</span>
+            <span className="address_text">{selectedBathroom.address}</span>
+          </div>
           <button
             onClick={() => setSelectedBathroom(null)}
             className="mt-2 px-4 py-2 bg-blue-500 text-white rounded"
@@ -173,6 +326,56 @@ export const BathroomMap = () => {
           </button>
         </div>
       )}
+    </div>
+  );
+};
+const MapWithPropertyPanel = ({ bathroomData }) => {
+  const [activeMarker, setActiveMarker] = useState(null);
+
+  // Handle marker click and set active marker
+  const handleMarkerClick = (id) => {
+    setActiveMarker(id); // Update active marker with the clicked marker's ID
+  };
+
+  // Find the active bathroom details
+  const activeBathroom = bathroomData.find((b) => b.id === activeMarker);
+
+  return (
+    <div className="map_container">
+      {/* Map and markers */}
+      <div className="map">
+        {bathroomData.map((bathroom) => (
+          <div
+            key={bathroom.id}
+            className="marker"
+            onClick={() => handleMarkerClick(bathroom.id)}
+          >
+            {bathroom.name}
+          </div>
+        ))}
+      </div>
+
+      {/* Property Panel */}
+      <div className="property_panel row shared_padding">
+        <div>
+          <span className="property_filter">COST:</span>
+          <span className="address_text">
+            {activeBathroom ? activeBathroom.cost : "Select a marker"}
+          </span>
+        </div>
+        <div>
+          <span className="property_filter">CROWD:</span>
+          <span className="address_text">
+            {activeBathroom ? activeBathroom.crowd : "Select a marker"}
+          </span>
+        </div>
+        <div>
+          <span className="property_filter">CLEAN:</span>
+          <span className="address_text">
+            {activeBathroom ? activeBathroom.clean : "Select a marker"}
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

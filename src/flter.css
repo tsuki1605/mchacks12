@@ -1,0 +1,237 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    /*overflow: hidden; /* Disable scrolling */
+    height: 100%; /* Ensure full-height viewport context */
+}
+.row{
+    flex-direction:column;
+    display:flex;
+}
+.col{
+    flex-direction:row;
+    display:flex;
+}
+.v_center{
+    justify-content: center;
+}
+.h_center{
+    align-items: center;
+}
+.shared_margin{
+    margin-right: 8px; 
+    margin-left: 8px;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+.shared_padding{
+    padding-left:8px;
+    padding-top:8px;
+    padding-bottom:8px;
+    padding-right: 8px;
+}
+.centered_text{
+    color: black;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight:bold;
+    text-align:center;
+    justify-content: center;
+}
+.title{
+    display:block;
+    color: black;
+    font-family: Arial;
+    font-size: 50px;
+    font-weight:bold;
+    text-align:left;
+}
+
+.title_filter{
+    display:block;
+    color: black;
+    font-family: Arial;
+    font-size: 30px;
+    font-weight:bold;
+    text-align:left;
+}
+
+    .shared_margin{
+        margin-right: 8px; 
+        margin-left: 8px;
+        margin-bottom: 8px;
+        margin-top: 8px;
+    }
+    .shared_padding{
+        padding-left:8px;
+        padding-top:8px;
+        padding-bottom:8px;
+        padding-right: 8px;
+    }
+    .centered_text{
+        color: black;
+        font-family: Arial;
+        font-size:35px;
+        text-align:center;
+        justify-content: center;
+    }
+    .title{
+        display:block;
+        color: black;
+        font-family: Arial;
+        font-size: 100px;
+        font-weight:bold;
+        text-align:left;
+    }
+    
+    .title_filter{
+        display:block;
+        color: black;
+        font-family: Arial;
+        font-size: 50px;
+        font-weight:bold;
+        text-align:left;
+    }
+    .property_filter{
+        color: black;
+        font-family: Arial;
+        font-size: 30px;
+        font-weight:bold;
+        text-align:left;
+    }
+    .page2_display{
+        background-color: blue;
+        width: 100vw;
+        height: 100vh;
+        display:block;
+    }
+    .map_display{
+        display:inline-block;
+        background-color:rgb(255, 201, 210);
+        /* height:400px; */
+        width:1200px;
+    }
+    /*--------------------------------------------------------FILTER--------------------------------------------------------*/
+    .filter{
+        display:inline-block;
+        background-color: rgb(240, 232, 175);
+        width: 500px;
+        height:100%;
+    }
+    .icon_filter{
+        flex:1;
+        height:100px;
+        object-fit:contain;
+        margin-left:5px;
+        margin-right:5px;
+    }
+    .icon_filter_layout{
+        text-align: center;
+        justify-content: center;
+    }
+     /*--------------------------------------------------------TOILET--------------------------------------------------------*/
+    .toilet_filter{
+        display:inline-block;
+        height: 250px;
+        margin-bottom: 50px;
+    }
+    .checkbox_filter{
+        color: black;
+        font-family: Arial;
+        font-size: 30px;
+        font-weight:bold;
+        text-align:left;
+    }
+   
+   
+   
+     /*--------------------------------------------------------FILTER--------------------------------------------------------*/
+    .water_filter{
+        display:flex;
+        height: 200px; 
+    }
+    .water{
+        display:inline-block;
+        padding-top:10px;
+        /* justify-content: center; */
+        height: 125px;
+        vertical-align: top;
+    }
+    
+    .water_icon{
+        max-width: 100%;
+        width:100px;
+        height:100px;
+        max-height: 200px;
+        object-fit:contain;
+        padding-bottom: 20px;
+    }
+     /*vertical-align:top */
+     /*--------------------------------------toilet panel------------------------------*/
+     
+     .panel{
+        display: inline-block;
+        width:400px;
+        height:250px;
+        background-color: rgb(216, 206, 206);
+     }
+     .panel_no_address{
+        display: flex;
+        height:215px;
+        overflow:hidden;
+     }
+     .toilet_logo_panel{
+        flex: 0 0 auto;
+        max-height: 100%;
+        flex-direction:column;
+        justify-content: center; /*vertical center*/
+        align-items: center;
+        width:150px;
+        display:flex;
+     }
+     .property_panel{
+        flex: 1;
+        justify-content: center;
+     }
+     .icon_panel{
+        /*width:150px;*/
+        height:150px;
+     }
+     .position_toilet_panel{
+        position: absolute;
+        display:none;
+        right: 5%;
+        top: 5%;
+     }
+     .position_water_panel{
+        position: absolute;
+        display:none;
+        right: 5%;
+        top: 5%;
+     }
+     .water_icon_panel{
+        width:60px;
+        height:60px;
+     }
+     .address_title_text{
+        font-size:20px;
+        font-weight:bold;
+     }
+     .map_toilet_point{
+        width:30px;
+        height:30px;
+        background-color:red;
+        position:absolute;
+        left:75%;
+        top:50%;
+        cursor: pointer;
+     }
+     .map_water_point{
+        width:30px;
+        height:30px;
+        background-color:red;
+        position:absolute;
+        left:55%;
+        top:50%;
+        cursor: pointer;
+     }
